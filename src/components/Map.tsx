@@ -8,24 +8,9 @@ interface MapProps {
 }
 
 const Map: React.FC<MapProps> = ({ schools }) => {
-  const [mapHeight, setMapHeight] = useState<number | undefined>(undefined);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setMapHeight(window.innerHeight);
-    };
-
-    handleResize();
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
-
   return (
     <div
-      style={{ height: mapHeight ? `${mapHeight}px` : "100vh", width: "100%" }}
+      style={{ height: "700px", width: "100%" }}
     >
       <MapContainer
         center={[35.69, 139.59]}

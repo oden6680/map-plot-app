@@ -11,26 +11,26 @@ const Map: React.FC<MapProps> = ({ schools }) => {
   const [mapHeight, setMapHeight] = useState<number | undefined>(undefined);
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      const handleResize = () => {
-        setMapHeight(window.innerHeight);
-      };
+    const handleResize = () => {
+      setMapHeight(window.innerHeight);
+    };
 
-      handleResize();
-      window.addEventListener("resize", handleResize);
+    handleResize();
+    window.addEventListener("resize", handleResize);
 
-      return () => {
-        window.removeEventListener("resize", handleResize);
-      };
-    }
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
   }, []);
 
   return (
-    <div style={{ height: "100vh", width: "100%" }}>
+    <div
+      style={{ height: mapHeight ? `${mapHeight}px` : "100vh", width: "100%" }}
+    >
       <MapContainer
         center={[35.69, 139.59]}
         zoom={13}
-        style={{ height: mapHeight ? `${mapHeight}px` : "100%", width: "100%" }}
+        style={{ height: "100%", width: "100%" }}
       >
         <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
         {schools.map((school) => (

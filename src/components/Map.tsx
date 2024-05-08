@@ -11,16 +11,18 @@ const Map: React.FC<MapProps> = ({ schools }) => {
   const [mapHeight, setMapHeight] = useState<number | undefined>(undefined);
 
   useEffect(() => {
-    const handleResize = () => {
-      setMapHeight(window.innerHeight);
-    };
+    if (typeof window !== "undefined") {
+      const handleResize = () => {
+        setMapHeight(window.innerHeight);
+      };
 
-    handleResize();
-    window.addEventListener("resize", handleResize);
+      handleResize();
+      window.addEventListener("resize", handleResize);
 
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
+      return () => {
+        window.removeEventListener("resize", handleResize);
+      };
+    }
   }, []);
 
   return (

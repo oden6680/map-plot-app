@@ -1,11 +1,8 @@
 import { NextResponse } from "next/server";
 
 export async function GET(request: Request) {
-  const { searchParams } = new URL(request.url);
-  const year = searchParams.get("year");
-  const area = searchParams.get("area");
   const apiKey = process.env.API_KEY;
-  const url = `https://www.reinfolib.mlit.go.jp/ex-api/external/XIT001?year=${year}&area=${area}`;
+  const url = `https://www.reinfolib.mlit.go.jp/ex-api/external/XKT006?response_format=geojson&z=13&x=7272&y=3225`;
 
   try {
     const response = await fetch(url, {

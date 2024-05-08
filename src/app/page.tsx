@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
+import Map from "../components/Map";
 
 export default function Home() {
   const [data, setData] = useState<any>(null);
@@ -24,8 +25,6 @@ export default function Home() {
   };
 
   return (
-    <div>
-      {data && <pre>{JSON.stringify(data, null, 2)}</pre>}
-    </div>
+    <div>{data ? <Map schools={data.features} /> : <p>Loading...</p>}</div>
   );
 }

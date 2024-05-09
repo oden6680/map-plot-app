@@ -1,29 +1,9 @@
-import { useEffect, useState } from "react";
-import { MapContainer, TileLayer } from "react-leaflet";
-import "leaflet/dist/leaflet.css";
-import SchoolMarker from "./SchoolMarker";
+"use client";
 
-interface MapProps {
-  schools: any[];
-}
+import dynamic from "next/dynamic";
 
-const Map: React.FC<MapProps> = ({ schools }) => {
-  return (
-    <div
-      style={{ height: "700px", width: "100%" }}
-    >
-      <MapContainer
-        center={[35.69, 139.59]}
-        zoom={13}
-        style={{ height: "100%", width: "100%" }}
-      >
-        <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-        {schools.map((school) => (
-          <SchoolMarker key={school.properties.p29_003_code} school={school} />
-        ))}
-      </MapContainer>
-    </div>
-  );
-};
+const MapComponent = dynamic(() => import("./MapComponent"), {
+  ssr: false,
+});
 
-export default Map;
+export default MapComponent;

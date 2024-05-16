@@ -12,10 +12,11 @@ export default function Home() {
 
   const fetchData = async () => {
     try {
-      const response = await fetch("/api/data?year=2015&area=13");
+      const response = await fetch("/api/data?");
       if (response.ok) {
         const jsonData = await response.json();
         setData(jsonData);
+        console.log("Data fetched successfully:", jsonData);
       } else {
         console.error("Error fetching data:", response.status);
       }
